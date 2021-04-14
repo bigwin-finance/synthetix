@@ -182,6 +182,7 @@ contract TradingRewards is ITradingRewards, ReentrancyGuard, Owned, Pausable, Mi
 
     /* ========== RESTRICTED FUNCTIONS ========== */
 
+    // 交易代币
     function recordExchangeFeeForAccount(uint usdFeeAmount, address account) external onlyExchanger {
         Period storage period = _periods[_currentPeriodID];
         // Note: In theory, the current period will never be finalized.

@@ -1,0 +1,40 @@
+@startuml
+title Synthetix 类图
+
+class BaseSynthetix {
+    + issueSynths()
+    + burnSynths()
+    + exchangeWithTracking()
+}
+
+class IERC20 {
+    ...
+}
+
+class IIssuer{
+    + issueSynths() // 通过SNX超额抵押，铸造代币
+    + burnSynths() // 销毁代币，返回SNX代币
+}
+
+class IExchanger {
+    + exchangeWithTracking() // 交换合成资产
+}
+
+class IExchangeRates{
+    + onlyOracle updateRates() // 设置利率（仅限Oracle调用）
+}
+
+class ChainLink {
+
+}
+
+
+
+BaseSynthetix <|-- IERC20
+BaseSynthetix  *--  IIssuer
+BaseSynthetix  *--  IExchanger
+IExchanger  *--  IExchangeRates
+IExchangeRates  *--  ChainLink
+
+
+@enduml

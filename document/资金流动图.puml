@@ -1,0 +1,21 @@
+@startuml
+actor Trader
+control Synthetix_Contract
+control sUSD_Contract
+
+
+== issue ==
+
+Trader -> Synthetix_Contract: 超额抵押 issueSynths()
+Synthetix_Contract -> sUSD_Contract
+sUSD_Contract --> Trader: 收到sUSD
+
+== burn ==
+Trader -> Synthetix_Contract: 销毁并解锁SNX burnSynths()
+Synthetix_Contract -> sUSD_Contract:销毁sUSD
+Synthetix_Contract -> Synthetix_Contract: 解锁SNX
+Synthetix_Contract --> Trader: 收到解锁后的SNX
+
+@enduml
+
+
